@@ -7,55 +7,61 @@ public class Controlador {
 	public static void main(String[] args) {
 
 		int opcion = 0;
-		int opcionCanciones = 0;
-		int opcionAlbunes = 0;
+		int opcionCancionesES = 0;
+		int opcionCancionesIN = 0;
+		ListaES miListaEspañol = new ListaES("Carlos"); // Creo mi lista para español
+		ListaIN miListaIngles = new ListaIN("Diana"); // Creo mi lista para ingles
 
 		try {
-			Utilidades.mensaje("*******************************************************************************************************");
-			Utilidades.mensaje("******************************_____HOLA, BIENVENIDO A TU SPOTIFY____***********************************");
-			Utilidades.mensaje("*******************************************************************************************************");
+			Util.mensaje(
+					"*******************************************************************************************************");
+			Util.mensaje(
+					"******************************_____HOLA, BIENVENIDO A TU SPOTIFY____***********************************");
+			Util.mensaje(
+					"*******************************************************************************************************");
 
 			while (opcion != 3) { // El switch se debe repetir hasta que elija la opción 3 Salir.Devolverá mensaje
 									// de error si no elige entre 1 y 3
 
-				opcion = Utilidades.menu3opciones("¿Quiéres gestionar tus canciones?", "¿Quiéres gestionar tus albunes?",
-						"¿Quiéres Salir?");
+				opcion = Util.menu3opciones("¿Quiéres tu lista de reproducción en español?",
+						"¿Quiéres tu lista de reproducción en ingles?", "¿Quiéres Salir?");
 
-				switch (opcion) {// Este switch nos introduce en el menú canciones o albunes
-				case 1:// canciones
+				switch (opcion) {// Este switch nos introduce en el menú de listas en español o en ingles
+				case 1:// canciones español
 
-					while (opcionCanciones != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
-													// Devolverá mensaje de error si no elige entre 1 y 5
-											
-						Utilidades.mensaje("¿Qué quieres hacer con tus canciones?");
+					while (opcionCancionesES != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
+														// Devolverá mensaje de error si no elige entre 1 y 5
 
-						opcionCanciones = Utilidades.menu5opciones("¿Quiéres añadir una canción?",
+						Util.mensaje("¿Qué quiéres hacer en tu lista de reproducción en español?");
+
+						opcionCancionesES = Util.menu5opciones("¿Quiéres añadir una canción?",
 								"¿Quieres modificar una canción?", "¿Quiéres eliminar una canción?",
 								"¿Quieres busccar una canción?", "¿Quiéres salir?");
 
-						switch (opcionCanciones) {// Este switch nos intruduce dentro del menú de canciones
+						switch (opcionCancionesES) {// Este switch nos intruduce dentro del menú de canciones en español
 
-						case 1:// Añadir canción
-							
-							System.out.println("cancion 1");
-
-							break;
-
-						case 2:// Modificar canción
-							
-							System.out.println("cancion 2");
+						case 1:// Añadir canción español
+                            Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
+							miListaEspañol.addcancionEs();
+							System.out.println(miListaEspañol.toString());
 
 							break;
 
-						case 3:// Eliminar canción
-							
-							System.out.println("cancion 3");
+						case 2:// Modificar canción español
+
+							System.out.println("cancion ES2");
 
 							break;
 
-						case 4:// Buscar canción
-							
-							System.out.println("cancion 4");
+						case 3:// Eliminar canción español
+
+							System.out.println("cancion ES3");
+
+							break;
+
+						case 4:// Buscar canción español
+
+							System.out.println("cancion ES4");
 
 							break;
 						}
@@ -63,45 +69,47 @@ public class Controlador {
 
 					break;
 
-				case 2:// Albunes
-					while (opcionAlbunes != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
+				case 2:// canciones ingles
+					while (opcionCancionesIN != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 						// Devolverá mensaje de error si no elige entre 1 y 5
-					
-                     
-					Utilidades.mensaje("¿Qué quieres hacer con tus albunes de música?");
-					
-					opcionAlbunes = Utilidades.menu5opciones("¿Quiéres añadir una album?",
-							"¿Quieres modificar una album?", "¿Quiéres eliminar una album?",
-							"¿Quieres busccar una album?", "¿Quiéres salir?");
 
-					switch (opcionAlbunes) {
+						Util.mensaje("¿Qué quiéres hacer en tu lista de reproducción en ingles?");
 
-					case 1:// Añadir album
-						
-						System.out.println("album 1");
+						opcionCancionesIN = Util.menu5opciones("¿Quiéres añadir una canción?",
+								"¿Quieres modificar una canción?", "¿Quiéres eliminar una canción?",
+								"¿Quieres busccar una canción?", "¿Quiéres salir?");
 
-						break;
+						switch (opcionCancionesIN) {
 
-					case 2:// Modificar album
-						
-						System.out.println("album 2");
+						case 1:// Añadir canción ingles
+						    Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
+							miListaIngles.addcancionIn();
+							System.out.println(miListaIngles.toString());
 
-						break;
+							break;
 
-					case 3:// Eliminar album
-						
-						System.out.println("album 3");
+							
+							
+						case 2:// Modificar canción ingles
 
-						break;
+							System.out.println("cancion in2");
 
-					case 4:// Buscar album
-						
-						System.out.println("album 4");
+							break;
 
-						break;
+						case 3:// Eliminar canción ingles
 
+							System.out.println("cancion in3");
+
+							break;
+
+						case 4:// Buscar canción ingles
+
+							System.out.println("cancion in4");
+
+							break;
+
+						}
 					}
-				  }
 					break;
 				}
 			}
