@@ -11,14 +11,14 @@ public class Controlador {
 		int opcionAlbunes = 0;
 
 		try {
-			Utilidades.mensaje("*******************************************************************************************************");
-			Utilidades.mensaje("******************************_____HOLA, BIENVENIDO A TU SPOTIFY____***********************************");
-			Utilidades.mensaje("*******************************************************************************************************");
+			Util.mensaje("*******************************************************************************************************");
+			Util.mensaje("******************************_____HOLA, BIENVENIDO A TU SPOTIFY____***********************************");
+			Util.mensaje("*******************************************************************************************************");
 
 			while (opcion != 3) { // El switch se debe repetir hasta que elija la opción 3 Salir.Devolverá mensaje
 									// de error si no elige entre 1 y 3
 
-				opcion = Utilidades.menu3opciones("¿Quiéres gestionar tus canciones?", "¿Quiéres gestionar tus albunes?",
+				opcion = Util.menu3opciones("¿Quiéres gestionar tus canciones?", "¿Quiéres gestionar tus albunes?",
 						"¿Quiéres Salir?");
 
 				switch (opcion) {// Este switch nos introduce en el menú canciones o albunes
@@ -27,9 +27,9 @@ public class Controlador {
 					while (opcionCanciones != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 													// Devolverá mensaje de error si no elige entre 1 y 5
 											
-						Utilidades.mensaje("¿Qué quieres hacer con tus canciones?");
+						Util.mensaje("¿Qué quieres hacer con tus canciones?");
 
-						opcionCanciones = Utilidades.menu5opciones("¿Quiéres añadir una canción?",
+						opcionCanciones = Util.menu5opciones("¿Quiéres añadir una canción?",
 								"¿Quieres modificar una canción?", "¿Quiéres eliminar una canción?",
 								"¿Quieres busccar una canción?", "¿Quiéres salir?");
 
@@ -68,9 +68,9 @@ public class Controlador {
 						// Devolverá mensaje de error si no elige entre 1 y 5
 					
                      
-					Utilidades.mensaje("¿Qué quieres hacer con tus albunes de música?");
+					Util.mensaje("¿Qué quieres hacer con tus albunes de música?");
 					
-					opcionAlbunes = Utilidades.menu5opciones("¿Quiéres añadir una album?",
+					opcionAlbunes = Util.menu5opciones("¿Quiéres añadir una album?",
 							"¿Quieres modificar una album?", "¿Quiéres eliminar una album?",
 							"¿Quieres busccar una album?", "¿Quiéres salir?");
 
