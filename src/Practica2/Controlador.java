@@ -1,6 +1,6 @@
 package Practica2;
 
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Controlador {
 
@@ -11,6 +11,15 @@ public class Controlador {
 		int opcionCancionesIN = 0;
 		ListaES miListaEspañol = new ListaES("Carlos"); // Creo mi lista para español
 		ListaIN miListaIngles = new ListaIN("Diana"); // Creo mi lista para ingles
+		boolean vaciaEs = false;
+		boolean vaciaIn = false;
+		String cancionOutEs;
+		int indicecancionOutEs=-1;
+		String cancionInEs;
+		int indiceModEs=0;
+		String cancionOutIn;
+		String CancionInIn;
+		int indiceModIn=0;
 
 		try {
 			Util.mensaje(
@@ -41,15 +50,28 @@ public class Controlador {
 						switch (opcionCancionesES) {// Este switch nos intruduce dentro del menú de canciones en español
 
 						case 1:// Añadir canción español
-                            Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
+							Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
 							miListaEspañol.addcancionEs();
 							System.out.println(miListaEspañol.toString());
 
 							break;
 
 						case 2:// Modificar canción español
+							vaciaEs = miListaEspañol.vacia();//Si la lista está vacía, me informa y no 
+															 //y no me deja modidficar.
+							if (vaciaEs == true) {
+								System.out.println("La lista está vacia");
+							} else {
 
-							System.out.println("cancion ES2");
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaEspañol.toString());
+
+								cancionOutEs = Util.pedirString("¿Qué canción quiere modificar?");
+								//indicecancionOutEs=miListaEspañol.indice(miListaEspañol, cancionOutEs);
+								
+								System.out.println(indicecancionOutEs);
+
+							}
 
 							break;
 
@@ -82,18 +104,24 @@ public class Controlador {
 						switch (opcionCancionesIN) {
 
 						case 1:// Añadir canción ingles
-						    Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
+							Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
 							miListaIngles.addcancionIn();
 							System.out.println(miListaIngles.toString());
 
 							break;
 
-							
-							
 						case 2:// Modificar canción ingles
+							vaciaIn = miListaEspañol.vacia();
 
-							System.out.println("cancion in2");
+							if (vaciaIn == true) {
+								System.out.println("La lista está vacia");
+							} else {
 
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaIngles.toString());
+								Util.mensaje("¿Cuál quieres modificar?");
+
+							}
 							break;
 
 						case 3:// Eliminar canción ingles
