@@ -58,8 +58,8 @@ public class ListaES {
 
 	/**
 	 * Verifica si la lista está vacía
-	 * @author Carlos Jimenez 
-	 * @version1.0
+	 * 
+	 * @author Carlos Jimenez @version1.0
 	 */
 	public boolean vacia() {
 		boolean vacio = true;
@@ -71,55 +71,131 @@ public class ListaES {
 		return vacio;
 	}
 
-	
-	
-	
-	 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// Mi inteción a la hora de hacer la modificaciones de los parámetros era sacar
+	// la posición con el título (que no hay dos iguales) y apartir de ahí modificar
+	// el dato. Pero no he sabido como hacerlo. Esa habría sido la manera correcta.
+	// Porque del modo que lo he hecho, si hay por ejemplo
+	// dos generos iguales, los va a cabiar todos.
+	// Hice unos métodos que he dejado en esta clase,abajo del todo, que localiza el
+	// indice, pero no he sabido como usar ese indice para hacer los add nuevos.
+
 	/**
+	 * Modifica el parametro de tipo String de un objeto tipo Cancion. Este método
+	 * se complementa co el meétodo menu5opciones o con el método menu3opciones, que
+	 * devuelve un dato de tipo integer, que será el que añadiremos en el parametro.
+	 * No he sabido com hecer un método totalmente reutilizable para modificar
+	 * parámetros de todo tipo de objetos.
 	 * 
-	 * @param miListaES
-	 * @param nombraBuscar
-	 * @return
+	 * @param atributo     Es de tipo Integer. complementar con método
+	 *                     menuo_opciones
+	 * @param datoAcambiar
+	 * @param datoNuevo
+	 * @author Carlos Jimenez
+	 * @version 1.0
 	 */
-	/*public int indice(ListaES miListaES, String nombraBuscar) {
+	public void cambiarAtributo(int atributo, String datoAcambiar, String datoNuevo) {
 
-		int longitud = miListaEs.size();
-		int i = 0;
-		int posicion = -1;
-		boolean encontrado = false;
+		ArrayList<Cancion> cancion = this.getMiListaEs();
+		for (Cancion item : cancion) {
 
-		if (longitud > 0) {
-			do {
-				if (miListaEs.get(i).equals(nombraBuscar)) {
-					posicion = i;
-					encontrado = true;
+			switch (atributo) {
+
+			case 1:// modifiac título
+
+				if (item.getTitulo().equals(datoAcambiar)) {
+					item.setTitulo(datoNuevo);
 				}
-				i++;
-			} while (i < longitud && !encontrado);
+				break;
+
+			case 2:// modifica artista
+
+				if (item.getArtista().equals(datoAcambiar)) {
+					item.setArtista(datoNuevo);
+				}
+				break;
+
+			case 3:// Modifica Genero
+
+				if (item.getGenero().equals(datoAcambiar)) {
+					item.setGenero(datoNuevo);
+				}
+				break;
+
+			case 5:// Modifica estado de ánimo
+				if (item.getEstadoAnimo().equals(datoAcambiar)) {
+					item.setEstadoAnimo(datoNuevo);
+				}
+				break;
+			}
 		}
-
-		return posicion;
-
 	}
-     */
-	
-	
-	
-	
-	
+
+	/**
+	 * Modifica el parametro de tipo Integer de un objeto tipo Cancion
+	 * 
+	 * @param datoAcambiar
+	 * @param datoNuevo
+	 * @author Carlos Jimenez
+	 * @version 1.0
+	 */
+
+	public void cambiarAtributo(int datoAcambiar, int datoNuevo) {
+
+		ArrayList<Cancion> cancion = this.getMiListaEs();
+		for (Cancion item : cancion) {
+			if (item.getAno() == datoAcambiar) {
+				item.setAno(datoNuevo);
+			}
+		}
+	}
+
+	/**
+	 * Elimina un objeto de la clase canción
+	 * 
+	 * @param datoAeliminar titulo de la canción
+	 * @author Carlos jimenez @1.0
+	 */
+	public void eliminar(String datoAeliminar) {
+		ArrayList<Cancion> cancion = this.getMiListaEs();
+		for (Cancion item : cancion) {
+			if (item.getTitulo().equals(datoAeliminar)) {
+				cancion.remove(item);
+			}
+		}
+	}
+
+	/**
+	 * Cambia el contenido del parametro titulo del un objeto cancion
+	 * 
+	 * @param tituloAcambiar
+	 * @param tituloNuevo
+	 */
+	public void cambiartitulo(String tituloAcambiar, String tituloNuevo) {
+
+		ArrayList<Cancion> canciones = this.getMiListaEs();
+		for (Cancion item : canciones) {
+			if (item.getTitulo().equals(tituloAcambiar)) {
+				item.setTitulo(tituloNuevo);
+			}
+		}
+	}
+
+	/**
+	 * Busca la posición en la lista del titulo introducido por parametro
+	 * 
+	 * @param tituloBuscado
+	 * @return indice
+	 */
+	public int buscarCancionPorTitulo(String tituloBuscado) {
+		ArrayList<Cancion> cancion = this.getMiListaEs();
+		int posicionBuscada = -1;
+		for (int i = 0; i < cancion.size(); i++) {
+			if (cancion.get(i).getTitulo().equals(tituloBuscado)) {
+				posicionBuscada = i;
+				break;
+			}
+		}
+		return posicionBuscada;
+	}
+
 }

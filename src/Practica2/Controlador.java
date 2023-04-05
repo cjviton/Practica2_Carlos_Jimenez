@@ -9,17 +9,27 @@ public class Controlador {
 		int opcion = 0;
 		int opcionCancionesES = 0;
 		int opcionCancionesIN = 0;
-		ListaES miListaEspañol = new ListaES("Carlos"); // Creo mi lista para español
+
+		ListaES miListaEspanol = new ListaES("Carlos"); // Creo mi lista para español
 		ListaIN miListaIngles = new ListaIN("Diana"); // Creo mi lista para ingles
+
 		boolean vaciaEs = false;
 		boolean vaciaIn = false;
-		String cancionOutEs;
-		int indicecancionOutEs=-1;
-		String cancionInEs;
-		int indiceModEs=0;
-		String cancionOutIn;
-		String CancionInIn;
-		int indiceModIn=0;
+
+		int parametroAmodidficarEs;
+		String datoOutEs;
+		String datoInEs;
+		int datoOutEsInteger;
+		int datoInEsInteger;
+
+		int parametroAmodidficarIn;
+		String datoOutIn;
+		String datoInIn;
+		int datoOutInInteger;
+		int datoInInInteger;
+
+		String cancionDelEs;
+		String cancionDelIn;
 
 		try {
 			Util.mensaje(
@@ -28,7 +38,7 @@ public class Controlador {
 					"******************************_____HOLA, BIENVENIDO A TU SPOTIFY____***********************************");
 			Util.mensaje(
 					"*******************************************************************************************************");
-
+			opcion = 0;
 			while (opcion != 3) { // El switch se debe repetir hasta que elija la opción 3 Salir.Devolverá mensaje
 									// de error si no elige entre 1 y 3
 
@@ -37,7 +47,7 @@ public class Controlador {
 
 				switch (opcion) {// Este switch nos introduce en el menú de listas en español o en ingles
 				case 1:// canciones español
-
+					opcionCancionesES = 0;
 					while (opcionCancionesES != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 														// Devolverá mensaje de error si no elige entre 1 y 5
 
@@ -51,33 +61,65 @@ public class Controlador {
 
 						case 1:// Añadir canción español
 							Util.mensaje("Aquí puedes añadir tu nueva canción a la lista de reproducción");
-							miListaEspañol.addcancionEs();
-							System.out.println(miListaEspañol.toString());
+							miListaEspanol.addcancionEs();
+							System.out.println(miListaEspanol.toString());
 
 							break;
 
 						case 2:// Modificar canción español
-							vaciaEs = miListaEspañol.vacia();//Si la lista está vacía, me informa y no 
-															 //y no me deja modidficar.
+							vaciaEs = miListaEspanol.vacia();// Si la lista está vacía, me informa y no
+																// y no me deja modidficar.
 							if (vaciaEs == true) {
-								System.out.println("La lista está vacia");
-							} else {
-
+								System.out.println("No se pueden modificar canciones porque tu lista está vacia.");
+							} else { // Muestra la lista de canciones para confirmar
+										// el dato a modificar
 								Util.mensaje("Esta es tu lista de canciones: ");
-								System.out.println(miListaEspañol.toString());
+								System.out.println(miListaEspanol.toString());
 
-								cancionOutEs = Util.pedirString("¿Qué canción quiere modificar?");
-								//indicecancionOutEs=miListaEspañol.indice(miListaEspañol, cancionOutEs);
-								
-								System.out.println(indicecancionOutEs);
+								Util.mensaje("¿Qué quiéres modificar?");
+								parametroAmodidficarEs = Util.menu5opciones("Titulo", "Artista", "Género", "Año",
+										"Estado de ánimo");
 
+								if (parametroAmodidficarEs == 4) {// Hago una condición por si el parámetro a cambiar es
+																	// año de tipo Integer
+
+									datoOutEsInteger = Util.pedirInt("¿Cuál quiéres modificar?");
+
+									datoInEsInteger = Util.pedirInt("¿Cuál quiéres introducir en su lugar?");
+
+									miListaEspanol.cambiarAtributo(datoOutEsInteger, datoInEsInteger);
+
+								} else {
+
+									datoOutEs = Util.pedirString("¿Cuál quiéres modificar?");
+
+									datoInEs = Util.pedirString("¿Cuál quiéres introducir en su lugar?");
+
+									miListaEspanol.cambiarAtributo(parametroAmodidficarEs, datoOutEs, datoInEs);
+
+									System.out.println(miListaEspanol.toString());
+								}
 							}
 
 							break;
 
 						case 3:// Eliminar canción español
+							vaciaEs = miListaEspanol.vacia();// Si la lista está vacía, me informa y no
+																// y no me deja modidficar.
 
-							System.out.println("cancion ES3");
+							if (vaciaEs == true) {
+								System.out.println("La lista está vacia");
+							} else {
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaEspanol.toString());
+
+								cancionDelEs = Util.pedirString("¿Qué canción quieres eliminar?");
+
+								miListaEspanol.eliminar(cancionDelEs);
+
+								System.out.println(miListaEspanol.toString());
+
+							}
 
 							break;
 
@@ -91,7 +133,10 @@ public class Controlador {
 
 					break;
 
+//-------------------------------------------------------INGLES------------------------------------------------------------------------
+
 				case 2:// canciones ingles
+					opcionCancionesIN = 0;
 					while (opcionCancionesIN != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 						// Devolverá mensaje de error si no elige entre 1 y 5
 
@@ -111,17 +156,41 @@ public class Controlador {
 							break;
 
 						case 2:// Modificar canción ingles
-							vaciaIn = miListaEspañol.vacia();
 
+							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
+							// y no me deja modidficar.
 							if (vaciaIn == true) {
-								System.out.println("La lista está vacia");
-							} else {
-
+								System.out.println("No se pueden modificar canciones porque tu lista está vacia.");
+							} else { // Muestra la lista de canciones para confirmar
+								// el dato a modificar
 								Util.mensaje("Esta es tu lista de canciones: ");
 								System.out.println(miListaIngles.toString());
-								Util.mensaje("¿Cuál quieres modificar?");
 
+								Util.mensaje("¿Qué quiéres modificar?");
+								parametroAmodidficarIn = Util.menu5opciones("Titulo", "Artista", "Género", "Año",
+										"Estado de ánimo");
+
+								if (parametroAmodidficarIn == 4) {// Hago una condición por si el parámetro a cambiar es
+																	// año de tipo Integer
+
+									datoOutInInteger = Util.pedirInt("¿Cuál quiéres modificar?");
+
+									datoInInInteger = Util.pedirInt("¿Cuál quiéres introducir en su lugar?");
+
+									miListaIngles.cambiarAtributo(datoOutInInteger, datoInInInteger);
+
+								} else {
+
+									datoOutIn = Util.pedirString("¿Cuál quiéres modificar?");
+
+									datoInIn = Util.pedirString("¿Cuál quiéres introducir en su lugar?");
+
+									miListaIngles.cambiarAtributo(parametroAmodidficarIn, datoOutIn, datoInIn);
+
+									System.out.println(miListaIngles.toString());
+								}
 							}
+
 							break;
 
 						case 3:// Eliminar canción ingles
@@ -143,7 +212,7 @@ public class Controlador {
 			}
 
 		} catch (Exception e) {
-
+			System.out.println("Has introducido un dato erroneo. Vuelve a iniciar el programa");
 		}
 
 	}
