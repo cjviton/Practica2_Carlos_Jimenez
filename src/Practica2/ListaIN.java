@@ -88,8 +88,7 @@ public class ListaIN {
 	 */
 	public void cambiarAtributo(int atributo, String datoAcambiar, String datoNuevo) {
 
-		ArrayList<Cancion> cancion = this.getMilistaIn();
-		for (Cancion item : cancion) {
+		for (Cancion item : miListaIn) {
 
 			switch (atributo) {
 
@@ -133,8 +132,7 @@ public class ListaIN {
 	 */
 	public void cambiarAtributo(int datoAcambiar, int datoNuevo) {
 
-		ArrayList<Cancion> cancion = this.getMilistaIn();
-		for (Cancion item : cancion) {
+		for (Cancion item : miListaIn) {
 			if (item.getAno() == datoAcambiar) {
 				item.setAno(datoNuevo);
 			}
@@ -142,19 +140,85 @@ public class ListaIN {
 	}
 
 	/**
-	 * Elimina un objeto de la clase canción
-	 * 
-	 * @param datoAeliminar titulo de la canción
-	 * @author Carlos Jimenes
+	 * Elimina un objeto de la clase canción apartir del título
+	 * @param datoAeliminar
+	 * @author Carlos Jimenez
 	 * @version 1.0
 	 */
 	public void eliminar(String datoAeliminar) {
-		ArrayList<Cancion> cancion = this.getMilistaIn();
-		for (Cancion item : cancion) {
-			if (item.getTitulo().equals(datoAeliminar)) {
-				cancion.remove(item);
+		int longitud = miListaIn.size();
+		int i=0;
+		boolean encontrado = false;
+				
+		if (longitud > 0 ) {
+			do {
+				if (miListaIn.get(i).getTitulo().equals(datoAeliminar)) {
+					miListaIn.remove(i);
+					encontrado=true;
+				}
+				i++;
+			}while (i < longitud && !encontrado);
+		
+		}
+	}
+	
+	
+	/**
+	 * Busca en los atributos de tipo string de listas de música
+	 * @param atributo
+	 * @param textoAbuscar
+	 */
+      public void buscar(int atributo, String textoAbuscar) {
+
+		
+		for (Cancion item : miListaIn) {
+
+			switch (atributo) {
+
+			case 1:// Busca por título
+
+				if (item.getTitulo().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 2:// Busca por artista
+
+				if (item.getArtista().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 3:// Busca por Genero
+
+				if (item.getGenero().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 5:// Busca por estado de ánimo
+				
+				if (item.getEstadoAnimo().equals(textoAbuscar)) {
+					System.out.println(item);
+				break;
 			}
 		}
+	}
+  }
+
+	
+	/**
+	 * Busca en los atributos de tipo integer de listas de música
+	 * @param atributo
+	 * @param datoAbuscar
+	 */
+	public void buscarInt(int datoAbuscar) { //Busca por año
+		for (Cancion item : miListaIn) {
+			
+			if (item.getAno() == datoAbuscar) {
+				System.out.println(item);
+				}			
+	   }	
 	}
 
 }

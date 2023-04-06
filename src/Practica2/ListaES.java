@@ -76,11 +76,8 @@ public class ListaES {
 	 * Modifica el parametro de tipo String de un objeto tipo Cancion. Este método
 	 * se complementa co el meétodo menu5opciones o con el método menu3opciones, que
 	 * devuelve un dato de tipo integer, que será el que añadiremos en el parametro.
-	 * No he sabido como hecer un método totalmente reutilizable para modificar
-	 * parámetros de todo tipo de objetos.
-	 * 
-	 * @param atributo     Es de tipo Integer. complementar con método
-	 *                     menuo_opciones
+	 * Funciona con atributos de listas de música
+	 * @param atributo     Es de tipo Integer. complementar con método menu_opciones                  
 	 * @param datoAcambiar
 	 * @param datoNuevo
 	 * @author Carlos Jimenez
@@ -88,8 +85,8 @@ public class ListaES {
 	 */
 	public void cambiarAtributo(int atributo, String datoAcambiar, String datoNuevo) {
 
-		ArrayList<Cancion> cancion = this.getMiListaEs();
-		for (Cancion item : cancion) {
+		
+		for (Cancion item : miListaEs) {
 
 			switch (atributo) {
 
@@ -123,8 +120,10 @@ public class ListaES {
 		}
 	}
 
+
+	
 	/**
-	 * Modifica el parametro de tipo Integer de un objeto tipo Cancion
+	 * Modifica el parametro año Integer en canciones de listas de música
 	 * 
 	 * @param datoAcambiar
 	 * @param datoNuevo
@@ -134,37 +133,19 @@ public class ListaES {
 
 	public void cambiarAtributo(int datoAcambiar, int datoNuevo) {
 
-		ArrayList<Cancion> cancion = this.getMiListaEs();
-		for (Cancion item : cancion) {
+		for (Cancion item : miListaEs) {
 			if (item.getAno() == datoAcambiar) {
 				item.setAno(datoNuevo);
 			}
 		}
 	}
 	
-	
-	/*public void eliminar (String datoAeliminar) {
-		int longitud = miListaEs.size();
-		boolean encontrado=false;
-		
-		for( int i=0; i<longitud; i++) {
-			
-			if(miListaEs.get(i).getTitulo().equals(datoAeliminar)) {
-				
-				miListaEs.remove(i);
-				i++;
-				encontrado = true;				
-			}				
-		}	
-	}
-	*/
-	// ------------------------------Estod métodos no me funcionan para eliminar--------------------------------------------
 
 	/**
-	 * Elimina un objeto de la clase canción
-	 * 
-	 * @param datoAeliminar titulo de la canción
-	 * @author Carlos jimenez @1.0
+	 * Elimina un objeto de la clase canción apartir del título en listas de música
+	 * @param datoAeliminar
+	 * @author Carlos Jimenez
+	 * @version 1.0
 	 */
 	public void eliminar(String datoAeliminar) {
 		int longitud = miListaEs.size();
@@ -183,45 +164,67 @@ public class ListaES {
 		}
 	}
 	
-
 	
 	/**
-	 * Elimina un objeto de la clase canción
-	 * 
-	 * @param datoAeliminar titulo de la canción
-	 * @author Carlos jimenez @1.0
+	 * Busca en los atributos de tipo string de listas de música
+	 * @param atributo
+	 * @param textoAbuscar
 	 */
-	/*public void eliminar(String datoAeliminar) {
-	
-			for (Cancion item : miListaEs) {
-			if (item.getTitulo().equals(datoAeliminar)) {
-				miListaEs.remove(item);
+      public void buscar(int atributo, String textoAbuscar) {
+
+		
+		for (Cancion item : miListaEs) {
+
+			switch (atributo) {
+
+			case 1:// Busca por título
+
+				if (item.getTitulo().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 2:// Busca por artista
+
+				if (item.getArtista().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 3:// Busca por Genero
+
+				if (item.getGenero().equals(textoAbuscar)) {
+					System.out.println(item);
+				}
+				break;
+
+			case 5:// Busca por estado de ánimo
 				
+				if (item.getEstadoAnimo().equals(textoAbuscar)) {
+					System.out.println(item);
+				break;
 			}
 		}
 	}
-	*/
+  }
+
 	
-	/*public static int buscarPosicion(String lista, String nombre) {
-
-		int longitud = lista.size();
-		int i = 0;
-		int posicion = -1;
-		boolean encontrado = false;
-
-		if (longitud > 0) {
-			do {
-				if (lista[i].equals(nombre)) {
-					posicion = i;
-					encontrado = true;
-				}
-				i++;
-			} while (i < longitud && !encontrado);
-		}
-
-		return posicion;
+	/**
+	 * Busca en los atributos de tipo integer de listas de música
+	 * @param atributo
+	 * @param datoAbuscar
+	 */
+	public void buscarInt(int datoAbuscar) { //Busca por año
+		for (Cancion item : miListaEs) {
+			
+			if (item.getAno() == datoAbuscar) {
+				System.out.println(item);
+				}			
+	   }	
 	}
-       */ 
+	
+	
+
 	
 	/**
 	 * Cambia el contenido del parametro titulo del un objeto cancion
@@ -245,7 +248,7 @@ public class ListaES {
 	 * @return indice
 	 */
 	public int buscarCancionPorTitulo(String tituloBuscado) {
-				int posicionBuscada = -1;
+		int posicionBuscada = -1;
 		for (int i = 0; i < miListaEs.size(); i++) {
 			if (miListaEs.get(i).getTitulo().equals(tituloBuscado)) {
 				posicionBuscada = i;				

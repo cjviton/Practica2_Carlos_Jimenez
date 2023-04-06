@@ -16,22 +16,30 @@ public class Controlador {
 		boolean vaciaEs = false;
 		boolean vaciaIn = false;
 
-		int parametroAmodidficarEs;
+		int parametroAmodidficarEs = 0;
 		String datoOutEs;
 		String datoInEs;
-		int datoOutEsInteger;
-		int datoInEsInteger;
+		int datoOutEsInteger = 0;
+		int datoInEsInteger = 0;
 
-		int parametroAmodidficarIn;
+		int parametroAmodidficarIn = 0;
 		String datoOutIn;
 		String datoInIn;
-		int datoOutInInteger;
-		int datoInInInteger;
+		int datoOutInInteger = 0;
+		int datoInInInteger = 0;
 
 		String cancionDelEs;
 		String cancionDelIn;
 
-		//try {
+		int parametroAbuscarEs = 0;
+		int parametroAbuscarIn = 0;
+		String datoFindEs;
+		String datoFindIn;
+		int datoFindEsInteger = 0;
+		int datoFindInInteger = 0;
+		;
+
+		try {
 			Util.mensaje(
 					"*******************************************************************************************************");
 			Util.mensaje(
@@ -105,14 +113,14 @@ public class Controlador {
 
 						case 3:// Eliminar canción español
 							vaciaEs = miListaEspanol.vacia();// Si la lista está vacía, me informa y no
-																// y no me deja modidficar.
+																// y no me deja eliminar.
 
 							if (vaciaEs == true) {
-								System.out.println("La lista está vacia");
+								System.out.println("No se pueden modificar canciones porque tu lista está vacia.");
 							} else {
 								Util.mensaje("Esta es tu lista de canciones: ");
 								System.out.println(miListaEspanol.toString());
-								
+
 								cancionDelEs = Util.pedirString("¿Qué canción quieres eliminar?");
 
 								miListaEspanol.eliminar(cancionDelEs);
@@ -124,8 +132,36 @@ public class Controlador {
 							break;
 
 						case 4:// Buscar canción español
+							vaciaEs = miListaEspanol.vacia();// Si la lista está vacía, me informa y no
+																// y no me deja buscar.
 
-							System.out.println("cancion ES4");
+							if (vaciaEs == true) {
+								System.out.println("No se pueden buscar canciones porque tu lista está vacia.");
+							} else {
+
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaEspanol.toString());
+
+								Util.mensaje("¿Qué tipo de busqueda quiéres hacer?");
+								parametroAbuscarEs = Util.menu5opciones("Titulo", "Artista", "Género", "Año",
+										"Estado de ánimo");
+
+								if (parametroAbuscarEs == 4) {// Hago una condición por si el parámetro a cambiar es
+																// año de tipo Integer
+
+									datoFindEsInteger = Util.pedirInt("¿La música de que año te apetece escuchar?");
+
+									miListaEspanol.buscarInt(datoFindEsInteger);
+
+								} else {
+
+									datoFindEs = Util.pedirString("¿Qué palabra quieres usar para la búsqueda?");
+
+									miListaEspanol.buscar(parametroAbuscarEs, datoFindEs);
+
+								}
+
+							}
 
 							break;
 						}
@@ -135,7 +171,7 @@ public class Controlador {
 
 //-------------------------------------------------------INGLES------------------------------------------------------------------------
 
-			case 2:// canciones ingles
+				case 2:// canciones ingles
 					opcionCancionesIN = 0;
 					while (opcionCancionesIN != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 						// Devolverá mensaje de error si no elige entre 1 y 5
@@ -155,7 +191,7 @@ public class Controlador {
 
 							break;
 
-					/*	case 2:// Modificar canción ingles
+						case 2:// Modificar canción ingles
 
 							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
 							// y no me deja modidficar.
@@ -199,12 +235,11 @@ public class Controlador {
 							// y no me deja modidficar.
 
 							if (vaciaIn == true) {
-								System.out.println("La lista está vacia");
+								System.out.println("No se pueden eliminar canciones porque tu lista está vacia.");
 							} else {
 								Util.mensaje("Esta es tu lista de canciones: ");
 								System.out.println(miListaIngles.toString());
-								
-								
+
 								cancionDelIn = Util.pedirString("¿Qué canción quieres eliminar?");
 
 								miListaIngles.eliminar(cancionDelIn);
@@ -212,12 +247,41 @@ public class Controlador {
 								System.out.println(miListaIngles.toString());
 
 							}
-							
+
 							break;
-*/
+
 						case 4:// Buscar canción ingles
 
-							System.out.println("cancion in4");
+							vaciaEs = miListaIngles.vacia();// Si la lista está vacía, me informa y no
+															// y no me deja buscar.
+
+							if (vaciaIn == true) {
+								System.out.println("No se pueden buscar canciones porque tu lista está vacia.");
+							} else {
+
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaIngles.toString());
+
+								Util.mensaje("¿Qué tipo de busqueda quiéres hacer?");
+								parametroAbuscarIn = Util.menu5opciones("Titulo", "Artista", "Género", "Año",
+										"Estado de ánimo");
+
+								if (parametroAbuscarIn == 4) {// Hago una condición por si el parámetro a cambiar es
+																// año de tipo Integer
+
+									datoFindInInteger = Util.pedirInt("¿La música de que año te apetece escuchar?");
+
+									miListaIngles.buscarInt(datoFindInInteger);
+
+								} else {
+
+									datoFindIn = Util.pedirString("¿Qué palabra quieres usar para la búsqueda?");
+
+									miListaIngles.buscar(parametroAbuscarIn, datoFindIn);
+
+								}
+
+							}
 
 							break;
 
@@ -225,11 +289,11 @@ public class Controlador {
 					}
 					break;
 				}
-		 }
+			}
 
-	//	} catch (Exception e) {
-	//		System.out.println("Has introducido un dato erroneo. Vuelve a iniciar el programa");
-	//	}
+		} catch (Exception e) {
+			System.out.println("Has introducido un dato erroneo. Vuelve a iniciar el programa");
+		}
 
 	}
 }
