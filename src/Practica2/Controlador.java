@@ -31,7 +31,7 @@ public class Controlador {
 		String cancionDelEs;
 		String cancionDelIn;
 
-		try {
+		//try {
 			Util.mensaje(
 					"*******************************************************************************************************");
 			Util.mensaje(
@@ -112,7 +112,7 @@ public class Controlador {
 							} else {
 								Util.mensaje("Esta es tu lista de canciones: ");
 								System.out.println(miListaEspanol.toString());
-
+								
 								cancionDelEs = Util.pedirString("¿Qué canción quieres eliminar?");
 
 								miListaEspanol.eliminar(cancionDelEs);
@@ -135,7 +135,7 @@ public class Controlador {
 
 //-------------------------------------------------------INGLES------------------------------------------------------------------------
 
-				case 2:// canciones ingles
+			case 2:// canciones ingles
 					opcionCancionesIN = 0;
 					while (opcionCancionesIN != 5) { // El switch se debe repetir hasta que elija la opción 5 Salir.
 						// Devolverá mensaje de error si no elige entre 1 y 5
@@ -155,7 +155,7 @@ public class Controlador {
 
 							break;
 
-						case 2:// Modificar canción ingles
+					/*	case 2:// Modificar canción ingles
 
 							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
 							// y no me deja modidficar.
@@ -195,10 +195,26 @@ public class Controlador {
 
 						case 3:// Eliminar canción ingles
 
-							System.out.println("cancion in3");
+							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
+							// y no me deja modidficar.
 
+							if (vaciaIn == true) {
+								System.out.println("La lista está vacia");
+							} else {
+								Util.mensaje("Esta es tu lista de canciones: ");
+								System.out.println(miListaIngles.toString());
+								
+								
+								cancionDelIn = Util.pedirString("¿Qué canción quieres eliminar?");
+
+								miListaIngles.eliminar(cancionDelIn);
+
+								System.out.println(miListaIngles.toString());
+
+							}
+							
 							break;
-
+*/
 						case 4:// Buscar canción ingles
 
 							System.out.println("cancion in4");
@@ -209,11 +225,11 @@ public class Controlador {
 					}
 					break;
 				}
-			}
+		 }
 
-		} catch (Exception e) {
-			System.out.println("Has introducido un dato erroneo. Vuelve a iniciar el programa");
-		}
+	//	} catch (Exception e) {
+	//		System.out.println("Has introducido un dato erroneo. Vuelve a iniciar el programa");
+	//	}
 
 	}
 }
