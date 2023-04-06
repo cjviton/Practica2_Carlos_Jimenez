@@ -232,7 +232,7 @@ public class Controlador {
 						case 3:// Eliminar canción ingles
 
 							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
-							// y no me deja modidficar.
+							                                // y no me deja modidficar.
 
 							if (vaciaIn == true) {
 								System.out.println("No se pueden eliminar canciones porque tu lista está vacia.");
@@ -252,7 +252,7 @@ public class Controlador {
 
 						case 4:// Buscar canción ingles
 
-							vaciaEs = miListaIngles.vacia();// Si la lista está vacía, me informa y no
+							vaciaIn = miListaIngles.vacia();// Si la lista está vacía, me informa y no
 															// y no me deja buscar.
 
 							if (vaciaIn == true) {
