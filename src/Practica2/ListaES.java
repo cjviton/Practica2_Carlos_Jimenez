@@ -59,7 +59,8 @@ public class ListaES {
 	/**
 	 * Verifica si la lista está vacía
 	 * 
-	 * @author Carlos Jimenez @version1.0
+	 * @author Carlos Jimenez 
+	 * @version1.0
 	 */
 	public boolean vacia() {
 		boolean vacio = true;
